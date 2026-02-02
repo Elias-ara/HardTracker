@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: HardTracker
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tracker_db
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update # Cria as tabelas automaticamente ao rodar
+    show-sql: true # Mostra o SQL no console (pra facilitar o debug)
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
