@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="header">
+    <h1>Hardware Tracker 🎯</h1>
+    <p>Cole o link do produto (Kabum/Amazon) e deixe o robô trabalhar.</p>
+  </div>
+
+  <div class="input-card">
+    <input
+      type="text"
+      placeholder="Cole a URL do produto aqui..."
+      [(ngModel)]="newUrl"
+      (keyup.enter)="trackProduct()"
+      [disabled]="isLoading"
+    />
+    <button type="button" (click)="trackProduct()" [disabled]="isLoading || !newUrl">
+      <span *ngIf="!isLoading">Rastrear</span>
+      <span *ngIf="isLoading">Processando...</span>
+    </button>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="card-info">
+        <h3>{{ product.name }}</h3>
+        <p class="store">{{ product.store || 'Loja Desconhecida' }}</p>
+        <div class="price" *ngIf="product.currentPrice">
+          {{ product.currentPrice | currency:'BRL' }}
+        </div>
+        <div class="price" *ngIf="!product.currentPrice">
+          R$ --
+        </div>
+        <small>Atualizado em: {{ product.lastCheck | date:'short' }}</small>
+      </div>
+      <div class="card-actions">
+        <a [href]="product.url" target="_blank" class="btn-link">Ver na Loja</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="products.length === 0">
+    <p>Nenhum produto rastreado ainda. Adicione o primeiro acima! ☝️</p>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+# Pastas de build do Java
+target/
+*.class
+
+# Pastas de dependência do Frontend
+node_modules/
+dist/
+.angular/
+
+# Configurações de IDE
+.idea/
+.vscode/
+*.iml
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
