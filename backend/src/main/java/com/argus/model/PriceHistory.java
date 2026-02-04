@@ -1,4 +1,4 @@
-package com.HardTracker.model;
+package com.argus.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,9 +1,9 @@
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: tracker_postgres
+    container_name: argus_postgres
     environment:
-      - POSTGRES_DB=tracker_db
+      - POSTGRES_DB=argus_db
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
     ports:

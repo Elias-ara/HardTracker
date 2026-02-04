@@ -1,10 +1,10 @@
-package com.HardTracker.controller;
+package com.argus.controller;
 
-import com.HardTracker.model.Product;
-import com.HardTracker.service.ScraperService;
+import com.argus.model.Product;
+import com.argus.service.ScraperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.HardTracker.repository.ProductRepository;
+import com.argus.repository.ProductRepository;
 import java.util.List;
 import java.util.Map;
 import java.util.Collections;

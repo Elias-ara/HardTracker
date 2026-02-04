@@ -3,10 +3,10 @@ server:
 
 spring:
   application:
-    name: HardTracker
+    name: Argus
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/tracker_db
+    url: jdbc:postgresql://localhost:5432/argus_db
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver

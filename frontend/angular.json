@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "HardTracker-ui": {
+    "Argus": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "HardTracker-ui:build:production"
+              "buildTarget": "Argus:build:production"
             },
             "development": {
-              "buildTarget": "HardTracker-ui:build:development"
+              "buildTarget": "Argus:build:development"
             }
           },
           "defaultConfiguration": "development"

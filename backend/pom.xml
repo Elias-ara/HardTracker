@@ -8,11 +8,11 @@
 		<version>4.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.HardTracker</groupId>
-	<artifactId>HardTracker</artifactId>
+	<groupId>com.argus</groupId>
+	<artifactId>argus-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HardTracker</name>
-	<description>Web scraping project to track hardware prices</description>
+	<name>Argus</name>
+	<description>Monitoramento inteligente de preços</description>
 	<url/>
 	<licenses>
 		<license/>

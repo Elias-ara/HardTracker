@@ -1,8 +1,8 @@
-package com.HardTracker.service;
+package com.argus.service;
 
-import com.HardTracker.model.PriceHistory;
-import com.HardTracker.model.Product;
-import com.HardTracker.repository.ProductRepository;
+import com.argus.model.PriceHistory;
+import com.argus.model.Product;
+import com.argus.repository.ProductRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

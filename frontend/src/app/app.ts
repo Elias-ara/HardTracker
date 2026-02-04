@@ -10,5 +10,5 @@ import { ProductListComponent } from './components/product-list/product-list';
 })
 
 export class App {
-  title = 'hardware-tracker-ui';
+  title = 'Argus';
 }

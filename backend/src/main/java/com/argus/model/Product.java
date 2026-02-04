@@ -1,4 +1,4 @@
-package com.HardTracker.model;
+package com.argus.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
