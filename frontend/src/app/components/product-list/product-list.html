@@ -4,7 +4,7 @@
     <p>Cole o link do produto (Kabum/Amazon) e deixe o robô trabalhar.</p>
   </div>
 
-  <div class="input-card">
+  <div class="input-card" [ngClass]="{'active': newUrl.length > 0}">
     <input
       type="text"
       placeholder="Cole a URL do produto aqui..."
@@ -32,7 +32,13 @@
         <small>Atualizado em: {{ product.lastCheck | date:'short' }}</small>
       </div>
       <div class="card-actions">
-        <a [href]="product.url" target="_blank" class="btn-link">Ver na Loja</a>
+        <a [href]="product.url" target="_blank" class="btn-icon btn-link" title="Ir na Loja">
+          🔗
+        </a>
+
+        <button (click)="deleteProduct(product.id)" class="btn-icon btn-delete" title="Excluir Produto">
+          🗑️
+        </button>
       </div>
     </div>
   </div>

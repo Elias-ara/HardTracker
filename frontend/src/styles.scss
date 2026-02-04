@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --cor-fundo-pagina: #1e1e1e;
+  --cor-texto-primario: #fcfaff;
+  --cor-accent: #ea5c2a;
+
+  --cor-fundo-container: #2a2a2a;
+  --cor-texto-secundario: #b3b3b3;
+  --cor-accent-hover: #d1491b;
+  --cor-accent-disabled: #4a4a4a;
+  --cor-borda: #404040;
+  --cor-danger: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--cor-fundo-pagina);
+  color: var(--cor-texto-primario);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}

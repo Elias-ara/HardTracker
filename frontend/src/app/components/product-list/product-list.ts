@@ -11,7 +11,7 @@ import { ProductService } from '../../services/product';
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss'
 })
-// NOME CORRIGIDO: Agora bate com o seu app.ts
+
 export class ProductListComponent {
 
   private productService = inject(ProductService);
@@ -66,5 +66,13 @@ export class ProductListComponent {
           }
         }
       });
+  }
+  deleteProduct(id: number) {
+    if (confirm('Tem certeza que deseja apagar este produto?')) {
+      this.productService.deleteProduct(id).subscribe(() => {
+        // Recarrega a lista para o item sumir da tela
+        this.loadProducts();
+      });
+    }
   }
 }
