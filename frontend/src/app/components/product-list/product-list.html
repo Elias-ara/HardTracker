@@ -18,18 +18,63 @@
     </button>
   </div>
 
+  <div class="empty-state" *ngIf="products.length === 0">
+    <p>Nenhum produto rastreado ainda. Adicione o primeiro acima! ☝️</p>
+  </div>
+
   <div class="product-grid">
     <div class="product-card" *ngFor="let product of products">
+
       <div class="card-info">
         <h3>{{ product.name }}</h3>
         <p class="store">{{ product.store || 'Loja Desconhecida' }}</p>
+
         <div class="price" *ngIf="product.currentPrice">
           {{ product.currentPrice | currency:'BRL' }}
         </div>
         <div class="price" *ngIf="!product.currentPrice">
           R$ --
         </div>
-        <small>Atualizado em: {{ product.lastCheck | date:'short' }}</small>
+
+        <small>Atualizado: {{ product.lastCheck | date:'short' }}</small>
+      </div>
+
+      <div class="config-section">
+        <div class="config-header">
+          <span>🔔 Configurar Alerta</span>
+        </div>
+
+        <div class="input-group">
+          <label for="target-{{product.id}}">
+            🎯 Avise-me quando custar menos de:
+          </label>
+          <div class="input-wrapper">
+            <span class="currency-symbol">R$</span>
+            <input
+              id="target-{{product.id}}"
+              type="number"
+              [(ngModel)]="product.targetPrice"
+              (keypress)="validateInput($event)"
+              placeholder="0,00"
+              min="0"
+            >          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="email-{{product.id}}">
+            📧 Enviar alerta para:
+          </label>
+          <input
+            id="email-{{product.id}}"
+            type="email"
+            [(ngModel)]="product.notificationEmail"
+            placeholder="exemplo@gmail.com"
+          >
+        </div>
+
+        <button (click)="updateProduct(product)" class="btn-save">
+          💾 Salvar Preferências
+        </button>
       </div>
       <div class="card-actions">
         <a [href]="product.url" target="_blank" class="btn-icon btn-link" title="Ir na Loja">
@@ -41,9 +86,5 @@
         </button>
       </div>
     </div>
-  </div>
-
-  <div class="empty-state" *ngIf="products.length === 0">
-    <p>Nenhum produto rastreado ainda. Adicione o primeiro acima! ☝️</p>
   </div>
 </div>

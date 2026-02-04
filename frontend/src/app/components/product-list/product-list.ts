@@ -1,8 +1,8 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { ProductService } from '../../services/product';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +15,7 @@ import { ProductService } from '../../services/product';
 export class ProductListComponent {
 
   private productService = inject(ProductService);
-  private cd = inject(ChangeDetectorRef); // <--- Ferramenta para forçar atualização da tela
+  private cd = inject(ChangeDetectorRef); // <--- Força atualização da tela
 
   products: any[] = [];
   newUrl: string = '';
@@ -29,7 +29,7 @@ export class ProductListComponent {
     this.productService.getProducts().subscribe({
       next: (data: any) => {
         this.products = data;
-        this.cd.detectChanges(); // Força a tela a mostrar os produtos
+        this.cd.detectChanges(); // Força a tela para mostrar os produtos
       },
       error: (err) => console.error('Erro ao carregar lista:', err)
     });
@@ -48,7 +48,7 @@ export class ProductListComponent {
           console.log('🏁 Finalize rodou: Destravando botão.');
           this.isLoading = false;
           this.newUrl = '';
-          this.cd.detectChanges(); // <--- OBRIGA O ANGULAR A DESTRAVAR O BOTÃO AGORA
+          this.cd.detectChanges();
         })
       )
       .subscribe({
@@ -73,6 +73,27 @@ export class ProductListComponent {
         // Recarrega a lista para o item sumir da tela
         this.loadProducts();
       });
+    }
+  }
+
+  updateProduct(product: any) {
+    this.productService.updateProduct(product).subscribe({
+      next: () => {
+        alert('Configurações salvas! 💾');
+        this.loadProducts();
+      },
+      error: (err) => {
+        console.error('Erro ao atualizar:', err);
+        alert('Erro ao salvar configuração.');
+      }
+    });
+  }
+
+  validateInput(event: KeyboardEvent) {
+    const isNumber = /[0-9.,]/.test(event.key);
+
+    if (!isNumber) {
+      event.preventDefault();
     }
   }
 }

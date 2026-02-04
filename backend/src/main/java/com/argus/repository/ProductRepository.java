@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    // O Spring cria o SQL automaticamente baseado no nome do método!
     Optional<Product> findByUrl(String url);
 }

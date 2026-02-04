@@ -23,7 +23,13 @@ export class ProductService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
+  // 3. Deletar um produto (DELETE)
   deleteProduct(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  // 4. Atualizar um produto (PUT)
+  updateProduct(product: any) {
+    return this.http.put(`${this.apiUrl}/${product.id}`, product);
   }
 }

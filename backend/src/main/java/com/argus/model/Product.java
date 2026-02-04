@@ -15,15 +15,18 @@ public class Product {
 
     private String name;
 
-    @Column(length = 1000) // Aumenta o tamanho para URLs grandes
+    @Column(length = 1000)
     private String url;
 
     private String store;
 
     private LocalDateTime lastCheck;
 
-    // O NOVO CAMPO QUE FALTAVA:
     private BigDecimal currentPrice;
+
+    private BigDecimal targetPrice;
+
+    private String notificationEmail;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<PriceHistory> priceHistory = new ArrayList<>();
@@ -45,10 +48,16 @@ public class Product {
     public LocalDateTime getLastCheck() { return lastCheck; }
     public void setLastCheck(LocalDateTime lastCheck) { this.lastCheck = lastCheck; }
 
-    // Getter e Setter do novo campo
     public BigDecimal getCurrentPrice() { return currentPrice; }
     public void setCurrentPrice(BigDecimal currentPrice) { this.currentPrice = currentPrice; }
 
     public List<PriceHistory> getPriceHistory() { return priceHistory; }
     public void setPriceHistory(List<PriceHistory> priceHistory) { this.priceHistory = priceHistory; }
+
+    public BigDecimal getTargetPrice(){return targetPrice;}
+    public void setTargetPrice(BigDecimal targetPrice){this.targetPrice = targetPrice;}
+
+    public String getNotificationEmail() { return notificationEmail; }
+    public void setNotificationEmail(String notificationEmail) { this.notificationEmail = notificationEmail;}
+
 }

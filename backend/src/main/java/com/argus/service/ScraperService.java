@@ -52,7 +52,7 @@ public class ScraperService {
             if (existingProduct.isPresent()) {
                 product = existingProduct.get();
                 product.setLastCheck(LocalDateTime.now());
-                product.setCurrentPrice(realPrice); // Atualiza preço atual
+                product.setCurrentPrice(realPrice);
                 if (!product.getName().equals(title)) product.setName(title);
             } else {
                 product = new Product();
@@ -71,7 +71,23 @@ public class ScraperService {
         }
     }
 
-    // --- O CÉREBRO DO ROBÔ ---
+    public BigDecimal getLivePrice(String url) {
+        try {
+            Document doc = Jsoup.connect(url)
+                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                    .timeout(15000)
+                    .header("Accept-Language", "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7")
+                    .get();
+
+            BigDecimal price = findBestPrice(doc, url);
+            return price != null ? price : BigDecimal.ZERO;
+
+        } catch (IOException e) {
+            System.err.println("⚠️ Robô falhou ao conectar na URL: " + url + " - Erro: " + e.getMessage());
+            return BigDecimal.ZERO;
+        }
+    }
+
 
     private BigDecimal findBestPrice(Document doc, String url) {
         BigDecimal price;
@@ -129,11 +145,11 @@ public class ScraperService {
             if (el == null) el = doc.select(".a-price-whole").first();
         }
         else if (url.contains("terabyteshop")) {
-            el = doc.select("div#valVista").first(); // Preço à vista Terabyte
+            el = doc.select("div#valVista").first();
             if (el == null) el = doc.select("p#valVista").first();
         }
         else if (url.contains("pichau")) {
-            el = doc.select("div:contains(à vista) + div").first(); // Tenta pegar o bloco de preço
+            el = doc.select("div:contains(à vista) + div").first();
             if (el == null) el = doc.select(".price").first();
         }
         else if (url.contains("mercadolivre")) {
@@ -144,7 +160,7 @@ public class ScraperService {
         return null;
     }
 
-    // 4. Última esperança: Procura qualquer coisa parecida com preço
+    // 4. Procura qualquer coisa parecida com preço
     private BigDecimal extractGenericVisualPrice(Document doc) {
         // Tenta achar elementos que tenham classe "price", "preco", "valor"
         Elements potentialPrices = doc.select("[class*='price'], [class*='preco'], [class*='valor'], [id*='price']");

@@ -1,0 +1,49 @@
+package com.argus.service;
+
+import com.argus.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public void sendPriceAlert(Product product) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("Argus <eliasmirandaaraujo7@gmail.com>");
+
+            if (product.getNotificationEmail() != null && !product.getNotificationEmail().isEmpty()) {
+                message.setTo(product.getNotificationEmail());
+            } else {
+                message.setTo("eliasmirandaaraujo8@gmail.com"); // Fallback
+            }
+
+            message.setSubject("🚨 ALERTA DE PREÇO: " + product.getName());
+
+            String text = String.format("""
+                Olá! O Argus detectou uma queda de preço! 👁️
+                
+                Produto: %s
+                Novo Preço: R$ %.2f
+                
+                Corra para comprar: %s
+                """,
+                    product.getName(),
+                    product.getCurrentPrice(),
+                    product.getUrl());
+
+            message.setText(text);
+
+            mailSender.send(message);
+            System.out.println("✅ Email de alerta enviado para o produto: " + product.getName());
+
+        } catch (Exception e) {
+            System.err.println("❌ Falha ao enviar email: " + e.getMessage());
+        }
+    }
+}
