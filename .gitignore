@@ -1,6 +1,7 @@
 # Pastas de build do Java
 target/
 *.class
+.env
 
 # Pastas de dependência do Frontend
 node_modules/

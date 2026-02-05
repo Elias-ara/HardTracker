@@ -2,6 +2,7 @@ package com.argus.service;
 
 import com.argus.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,13 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Value("${SMTP_EMAIL}")
+    private String smtpMail;
+
     public void sendPriceAlert(Product product) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("Argus <eliasmirandaaraujo7@gmail.com>");
+            message.setFrom("Argus <" + smtpMail + ">");
 
             if (product.getNotificationEmail() != null && !product.getNotificationEmail().isEmpty()) {
                 message.setTo(product.getNotificationEmail());
