@@ -1,0 +1,116 @@
+// Cores do Tema
+$bg-dark: #121212;
+$sidebar-bg: #1e1e1e;
+$primary: #6200ea;
+$text: #ffffff;
+$text-muted: #b0b0b0;
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: $bg-dark;
+  color: $text;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden; // Evita scroll na página inteira
+
+  .sidebar {
+    width: 260px;
+    background-color: $sidebar-bg;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255,255,255,0.05);
+
+    .logo {
+      margin-bottom: 50px;
+      h2 {
+        color: $text;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: $text-muted;
+      padding: 12px 16px;
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
+      font-size: 15px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+      font-weight: 500;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: $text;
+      }
+
+      &.active {
+        background-color: rgba($primary, 0.15);
+        color: lighten($primary, 10%);
+      }
+
+      &.logout-btn {
+        margin-top: auto;
+        color: #ff6b6b;
+        &:hover { background-color: rgba(255, 107, 107, 0.1); }
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto; // Scroll só no conteúdo
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+
+      h1 { font-size: 1.8rem; font-weight: 600; }
+      .user-info { color: $text-muted; }
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+
+      .card {
+        background-color: $sidebar-bg;
+        padding: 24px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.05);
+
+        h3 {
+          font-size: 0.9rem;
+          color: $text-muted;
+          margin-bottom: 15px;
+          font-weight: 500;
+        }
+
+        .big-number {
+          font-size: 3rem;
+          font-weight: 700;
+          color: $text;
+          margin: 0;
+        }
+
+        .status-online {
+          font-size: 1.5rem;
+          color: #00e676;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+$primary-color: #ea5c2a;
+$bg-color: #121212;
+$card-bg: #1e1e1e;
+$text-primary: #ffffff;
+$text-secondary: #b0b0b0;
+$google-btn-bg: #ffffff;
+$google-btn-text: #1f1f1f;
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  background-color: $bg-color;
+  font-family: 'Inter', sans-serif;
+  .login-card {
+    background: $card-bg;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05); // Borda sutil
+
+    .brand-header {
+      margin-bottom: 1.5rem;
+
+      h1 {
+        color: $text-primary;
+        font-size: 2.5rem;
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: -1px;
+        display: inline-block;
+      }
+
+      .badge {
+        background: rgba($primary-color, 0.2);
+        color: lighten($primary-color, 20%);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-left: 10px;
+        vertical-align: middle;
+      }
+    }
+
+    .subtitle {
+      color: $text-secondary;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $google-btn-bg;
+      color: $google-btn-text;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      .icon-wrapper {
+        display: flex;
+        align-items: center;
+        margin-right: 12px;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        background-color: darken($google-btn-bg, 5%);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .footer {
+      margin-top: 3rem;
+      p {
+        color: rgba($text-secondary, 0.5);
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

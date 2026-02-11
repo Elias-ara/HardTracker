@@ -1,0 +1,40 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>Argus 🦅</h2>
+    </div>
+    <nav>
+      <button class="active">📊 Monitoramento</button>
+      <button>📦 Produtos</button>
+      <button>⚙️ Configurações</button>
+
+      <button (click)="logout()" class="logout-btn">🚪 Sair</button>
+    </nav>
+  </aside>
+
+  <main class="content">
+      <header>
+        <h1>Painel de Controle</h1>
+        <div class="user-info">
+          <span>Bem-vindo, {{ userName }}</span>
+        </div>
+      </header>
+
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Produtos Monitorados</h3>
+        <p class="big-number">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Alertas Enviados</h3>
+        <p class="big-number">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Status do Robô</h3>
+        <p class="status-online">🟢 Online</p>
+      </div>
+    </div>
+  </main>
+</div>
