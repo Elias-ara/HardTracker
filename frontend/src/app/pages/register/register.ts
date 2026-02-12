@@ -1,33 +1,32 @@
 import { Component } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './register.html',
+  styleUrl: './register.scss'
 })
-export class Login {
+export class Register {
+
+  name = '';
   email = '';
   password = '';
   loading = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  loginWithGoogle() {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
-  }
-
-  fazerLogin() {
-    if (!this.email || !this.password) return;
+  fazerCadastro() {
+    if (!this.name || !this.email || !this.password) return;
 
     this.loading = true;
 
-    this.http.post<any>('http://localhost:8080/auth/login', {
+    this.http.post<any>('http://localhost:8080/auth/register', {
+      name: this.name,
       email: this.email,
       password: this.password
     }).subscribe({
@@ -36,7 +35,7 @@ export class Login {
         this.router.navigate(['/dashboard']);
       },
       error: (erro) => {
-        alert('Email ou senha inválidos!');
+        alert('Erro ao cadastrar! Verifique os dados.');
         this.loading = false;
       }
     });
